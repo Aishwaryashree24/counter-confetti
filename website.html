@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+    <script src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <style>
+        button{
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease, transform 0.2 ease;
+        }
+
+        button:hover{
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .button-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #display-content{
+            display: none;
+        }
+
+        body{
+            background-color: #fff;
+            transition: background-color 1s ease;
+        }
+    </style>
+
+    <div class="button-container">
+        <button id="counter">hello, click me</button>
+        <h3 id="display-content" style="display: none;"></h3>
+    </div>
+
+    <script>
+        let count = 0;
+        const message = document.getElementById("display-content");
+        const button = document.getElementById("counter");
+
+        button.addEventListener("click", ()=> {
+            count++;
+            button.textContent = `${count}, click me`;
+            if(count===10){
+                displaymessage(`you're just getting started! keep going! 🚀`, `#FFD700`);
+                triggerconfeti();
+            }
+            else if(count===20){
+                displaymessage(`Double digits! you're on fire! 🔥`, `#FF6347`);
+                triggerconfeti();
+            }
+            else if(count===50){
+                displaymessage(`wow, 50 clicks! take a deep breath, you're unstoppable! 😎`, `#32CD32`);
+                triggerconfeti();
+            }
+            else if(count===100){
+                displaymessage(`centurian achieved! you deserve a break... or do you? 🤔`, `#F7C1C1`);
+                triggerconfeti();
+            }
+            else if(count===200){
+                displaymessage(`200 clicks?! are you clicking for the gold? 🏆`, `A0D6D1`);
+                triggerconfeti();
+            }
+            else if(count===500){
+                displaymessage(`500 clicks! your mouse deserves an award too! 🖱️`, `#F3E1F5`);
+                triggerconfeti();
+            }
+            else if(count===1000){
+                displaymessage(`1000 clicks! did you just set a world record?? 🌎🥇`, `#FFE4E1`);
+                triggerconfeti();
+            }
+            else{
+                hidemessage();
+            }
+        });
+
+        function hidemessage(){
+            message.style.display = 'none';
+            document.body.style.backgroundColor = `#fff`;
+        }
+
+        function displaymessage(text, bgcolor){
+            message.textContent = text;
+            message.style.display = 'block';
+            document.body.style.backgroundColor = bgcolor;
+        }
+
+        function triggerconfeti(){
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: {x: 0.5, y: 0.5},
+                colors: ['#ff0000', '#00ff00', '#0000ff', '#ffcc00']
+            });
+        }
+    </script>
+</body>
+</html>
